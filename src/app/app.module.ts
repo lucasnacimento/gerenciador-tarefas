@@ -8,12 +8,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
+import { TarefasComponent } from './tarefas/tarefas.component';
+import { CardTarefaComponent } from './card-tarefa/card-tarefa.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CadastroComponent
+    CadastroComponent,
+    TarefasComponent,
+    CardTarefaComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
     AppRoutingModule,
     MatCardModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
