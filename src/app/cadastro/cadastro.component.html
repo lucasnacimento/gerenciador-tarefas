@@ -3,29 +3,29 @@
   <mat-card class="w-1/2 m-auto bg-[#D9D9D9]">
     <div class="text-center text-2xl font-sans">Nova Tarefa</div>
 
-    <form class="flex-col p-6">
+    <form class="flex-col p-6" #userForm="ngForm" (ngSubmit)="enviarTarefa(userForm.value)">
       <ng-container class="flex-col">
         <div class="flex justify-center">
           <mat-form-field class="w-full" appearance="fill">
-            <mat-label>Tarefa</mat-label>
-            <input matInput>
+            <mat-label>Título</mat-label>
+            <input matInput name="titulo" ngModel>
           </mat-form-field>
         </div>
 
         <div class="flex justify-center">
           <mat-form-field class="w-full" appearance="fill">
             <mat-label>Descrição</mat-label>
-            <textarea matInput></textarea>
+            <textarea matInput name="descricao" ngModel></textarea>
           </mat-form-field>
         </div>
 
         <div class="flex justify-center">
           <mat-form-field class="w-full" appearance="fill">
             <mat-label>Prioridade</mat-label>
-            <mat-select matNativeControl>
-              <mat-option value="baixa">Baixa</mat-option>
-              <mat-option value="media">Media</mat-option>
-              <mat-option value="alta">Alta</mat-option>
+            <mat-select matNativeControl name="prioridade" ngModel>
+              <mat-option value="BAIXA">Baixa</mat-option>
+              <mat-option value="MEDIA">Media</mat-option>
+              <mat-option value="ALTA">Alta</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -33,15 +33,16 @@
 
       <ng-container class="flex-col">
         <div class="flex justify-center">
-          <button type="submit"
-            class="outline outline-offset-2 outline-1 outline-gray-400 w-1/2 p-2 m-2 rounded-md text-white bg-[#3F50E8]">
-            Cadastrar
-          </button>
+          <input type="submit"
+            class="outline outline-offset-2 outline-1 outline-gray-400 w-1/2 p-2 m-2 rounded-md text-white bg-[#3F50E8]"
+            value="Cadastrar"/>
         </div>
 
         <div class="flex justify-center">
-          <button type="submit"
-            class="outline outline-offset-2 outline-1 outline-gray-400 w-1/2 p-2 m-2 rounded-md text-white bg-[#3F50E8]">
+          <button type="button"
+            class="outline outline-offset-2 outline-1 outline-gray-400 w-1/2 p-2 m-2 rounded-md text-white bg-[#3F50E8]"
+            (click)="onTarefas()"
+            >
             Voltar
           </button>
         </div>

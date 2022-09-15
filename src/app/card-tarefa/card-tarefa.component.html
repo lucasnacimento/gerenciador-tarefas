@@ -1,23 +1,37 @@
 <mat-card>
   <div class="grid grid-cols-4 gap-4">
 
-    <div class="col-start-1 col-end-3 text-2xl">Titulo</div>
+    <div class="col-start-1 col-end-3 text-2xl">{{ tarefa.titulo }}</div>
 
-    <div class="flex justify-end col-end-5 text-end">
+    <div class="flex justify-end col-end-5 text-end"
+      *ngIf="tarefa.prioridade.toString() === 'BAIXA'">
       <img class="w-10 h-10" src="../../assets/img/lowest.svg" alt="">
     </div>
 
-    <div class="col-span-full">Descrição</div>
+    <div class="flex justify-end col-end-5 text-end"
+      *ngIf="tarefa.prioridade.toString() === 'MEDIA'">
+      <img class="w-10 h-10" src="../../assets/img/medium.svg" alt="">
+    </div>
 
-    <!-- <div class="flex justify-center items-center rounded-md p-1 col-start-3 col-end-5 text-end text-xl bg-[#66ce89]">
+    <div class="flex justify-end col-end-5 text-end"
+      *ngIf="tarefa.prioridade.toString() === 'ALTA'">
+      <img class="w-10 h-10" src="../../assets/img/highest.svg" alt="">
+    </div>
+
+    <div class="col-span-full">{{ tarefa.descricao }}</div>
+
+    <div class="flex justify-center items-center rounded-md p-1 col-start-3 col-end-5 text-end text-xl bg-[#66ce89]"
+      *ngIf="tarefa.status.toString() === 'CONCLUIDO'">
       <span class="px-2">Concluída</span>
       <mat-icon>check_circle</mat-icon>
-    </div> -->
+    </div>
 
-    <div class="flex justify-center items-center rounded-md p-1 col-start-3 col-end-5 text-end text-xl bg-[#fa704d]">
+    <div class="flex justify-center items-center rounded-md p-1 col-start-3 col-end-5 text-end text-xl bg-[#fa704d]"
+      *ngIf="tarefa.status.toString() === 'PENDENTE'">
       <span class="px-2">Pendente</span>
       <mat-icon>info</mat-icon>
     </div>
 
   </div>
+
 </mat-card>

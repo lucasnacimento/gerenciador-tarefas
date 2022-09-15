@@ -74,6 +74,10 @@
             },
             "development": {
               "browserTarget": "gerenciador-tarefas:build:development"
+            },
+            "options": {
+              "browserTarget": "angular-app:build",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { TarefaResponse } from '../model/tarefa-response';
 
 @Component({
   selector: 'card-tarefa',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-tarefa.component.scss']
 })
 export class CardTarefaComponent implements OnInit {
+
+  @Input() tarefa: TarefaResponse;
 
   constructor() { }
 
