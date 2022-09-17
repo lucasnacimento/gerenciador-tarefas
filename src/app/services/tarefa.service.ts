@@ -4,29 +4,32 @@ import { Observable } from 'rxjs';
 import { URL_BASE } from 'src/environments/environment';
 
 import { TarefaRequest } from '../model/tarefa-request';
+import { TarefaResponse } from '../model/tarefa-response';
+import { Response } from '../model/response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TarefaService {
 
-  private readonly TAREFA_ENVIAR = '/task/criar';
+  private readonly TAREFA_ENVIAR = '/criar';
 
-  private readonly TAREFA_BUSCAR_TODOS = '/task/buscar-todos';
+  private readonly TAREFA_BUSCAR_TODOS = '/buscar-todos';
 
-  constructor() { }
+  private readonly CONCLUIR_TAREFA = '/concluir';
 
-  cadastrarTarefa(request: TarefaRequest): Promise<Response> {
-    return fetch(URL_BASE.concat(this.TAREFA_ENVIAR), {
-      method:'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'},
-      body: JSON.stringify(request)});
+  constructor(private httpClient: HttpClient) { }
+
+  cadastrarTarefa(request: TarefaRequest): Observable<TarefaResponse> {
+    return this.httpClient.post<TarefaResponse>(URL_BASE.concat(this.TAREFA_ENVIAR), request);
   }
 
-  listarTarefas() : Promise<Response> {
-    return fetch(URL_BASE.concat(this.TAREFA_BUSCAR_TODOS), {method:'GET'});
+  listarTarefas() : Observable<Response> {
+    return this.httpClient.get<Response>(URL_BASE.concat(this.TAREFA_BUSCAR_TODOS));
+  }
+
+  concluirTarefa(request: TarefaRequest): Observable<TarefaRequest> {
+    return this.httpClient.put<TarefaRequest>(URL_BASE.concat('/'+request.titulo).concat(this.CONCLUIR_TAREFA), request);
   }
 
 }

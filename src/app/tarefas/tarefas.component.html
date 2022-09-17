@@ -13,7 +13,7 @@
     <h2 class="text-center" *ngIf="todasAsTarefas.length === 0">Nenhuma Tarefa foi cadastrada...</h2>
     <div class="p-4"
     *ngFor="let tarefa of todasAsTarefas">
-        <card-tarefa [tarefa]="tarefa"></card-tarefa>
+        <card-tarefa [tarefa]="tarefa" (updateCard)="onUpdateCard($event)"></card-tarefa>
       </div>
     </div>
 

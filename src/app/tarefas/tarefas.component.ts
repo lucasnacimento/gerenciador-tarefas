@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { Response } from '../model/response';
@@ -14,7 +14,9 @@ export class TarefasComponent implements OnInit {
 
   todasAsTarefas: TarefaResponse[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute, private service: TarefaService) { }
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+    private service: TarefaService) { }
 
   ngOnInit(): void {
     this.montarLista();
@@ -25,11 +27,15 @@ export class TarefasComponent implements OnInit {
   }
 
   async montarLista(): Promise<void> {
-    this.service.listarTarefas().then(response => {
-      if(response.status === 200) {
-        response.json().then(jsonBody => this.todasAsTarefas = jsonBody.objeto);
-      }
-    });
+    this.service.listarTarefas()
+        .subscribe({
+          next: (response) => this.todasAsTarefas = response.objeto,
+          error: (err) => alert('Erro ao carregar as tarefas. tente novamente mais tarde.'),
+        })
+  }
+
+  onUpdateCard(event: any) {
+    this.montarLista();
   }
 
 }
