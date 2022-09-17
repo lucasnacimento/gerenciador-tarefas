@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { catchError } from 'rxjs';
 import { TarefaRequest } from '../model/tarefa-request';
 import { TarefaService } from '../services/tarefa.service';
 
@@ -21,7 +22,14 @@ export class CadastroComponent implements OnInit {
   }
 
   enviarTarefa(tarefa: TarefaRequest): void {
-    this.service.cadastrarTarefa(tarefa);
+    this.service.cadastrarTarefa(tarefa).then(response => {
+      if(response.status === 201) {
+        this.onTarefas();
+      } else {
+        alert("Algo deu Errado!");
+      }
+    })
+
   }
 
 }

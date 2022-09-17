@@ -1,10 +1,9 @@
-import { TarefaRequest } from '../model/tarefa-request';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TarefaResponse } from '../model/tarefa-response';
 import { URL_BASE } from 'src/environments/environment';
-import { Response } from 'src/app/model/response';
+
+import { TarefaRequest } from '../model/tarefa-request';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +14,19 @@ export class TarefaService {
 
   private readonly TAREFA_BUSCAR_TODOS = '/task/buscar-todos';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor() { }
 
-  cadastrarTarefa(request: TarefaRequest) {
-    return this.httpClient.post<TarefaResponse>(URL_BASE.concat(this.TAREFA_ENVIAR), request).subscribe();
+  cadastrarTarefa(request: TarefaRequest): Promise<Response> {
+    return fetch(URL_BASE.concat(this.TAREFA_ENVIAR), {
+      method:'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'},
+      body: JSON.stringify(request)});
   }
 
-  listarTarefas() : Observable<Response> {
-    return this.httpClient.get<Response>(URL_BASE.concat(this.TAREFA_BUSCAR_TODOS));
+  listarTarefas() : Promise<Response> {
+    return fetch(URL_BASE.concat(this.TAREFA_BUSCAR_TODOS), {method:'GET'});
   }
+
 }
