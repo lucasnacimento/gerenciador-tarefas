@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { TarefaResponse } from '../model/tarefa-response';
 import { TarefaService } from '../services/tarefa.service';
 

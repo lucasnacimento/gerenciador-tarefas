@@ -1,7 +1,6 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
-import { Response } from '../model/response';
+
 import { TarefaResponse } from '../model/tarefa-response';
 import { TarefaService } from '../services/tarefa.service';
 

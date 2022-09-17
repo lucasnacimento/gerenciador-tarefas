@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, of } from 'rxjs';
+
 import { TarefaRequest } from '../model/tarefa-request';
 import { TarefaService } from '../services/tarefa.service';
 
