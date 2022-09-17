@@ -18,6 +18,8 @@ export class TarefaService {
 
   private readonly CONCLUIR_TAREFA = '/concluir';
 
+  private readonly PENDENCIAR_TAREFA = '/pendenciar';
+
   constructor(private httpClient: HttpClient) { }
 
   cadastrarTarefa(request: TarefaRequest): Observable<TarefaResponse> {
@@ -30,6 +32,10 @@ export class TarefaService {
 
   concluirTarefa(request: TarefaRequest): Observable<TarefaRequest> {
     return this.httpClient.put<TarefaRequest>(URL_BASE.concat('/'+request.titulo).concat(this.CONCLUIR_TAREFA), request);
+  }
+
+  pendenciarTarefa(request: TarefaRequest): Observable<TarefaRequest> {
+    return this.httpClient.put<TarefaRequest>(URL_BASE.concat('/'+request.titulo).concat(this.PENDENCIAR_TAREFA), request);
   }
 
 }

@@ -18,10 +18,26 @@ export class CardTarefaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onAcao() {
+    if (this.isConcluido()) {
+      this.onPendenciarTarefa();
+    } else {
+      this.onConcluirTarefa();
+    }
+  }
+
   onConcluirTarefa() {
     this.service.concluirTarefa(this.tarefa)
         .subscribe({
           error: (err) => alert("Erro ao concluir Tarefa!"),
+          complete: () => this.updateCard.emit({cardAtualizado: this.tarefa})
+        });
+  }
+
+  onPendenciarTarefa() {
+    this.service.pendenciarTarefa(this.tarefa)
+        .subscribe({
+          error: (err) => alert("Erro ao pendenciar Tarefa!"),
           complete: () => this.updateCard.emit({cardAtualizado: this.tarefa})
         });
   }
