@@ -29,11 +29,10 @@ export class TarefasComponent implements OnInit {
     this.service.listarTarefas()
         .subscribe({
           next: (response) => this.todasAsTarefas = response.objeto,
-          error: (err) => alert('Erro ao carregar as tarefas. tente novamente mais tarde.'),
         })
   }
 
-  onUpdateCard(event: any) {
+  onUpdateCard() {
     this.montarLista();
   }
 

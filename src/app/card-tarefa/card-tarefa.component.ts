@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { TarefaResponse } from '../model/tarefa-response';
 import { TarefaService } from '../services/tarefa.service';
+import { Status, Prioridade } from '../model/enumeradores';
 
 @Component({
   selector: 'card-tarefa',
@@ -13,6 +14,12 @@ export class CardTarefaComponent implements OnInit {
   @Input() tarefa: TarefaResponse;
 
   @Output() updateCard = new EventEmitter();
+
+  prioridadeMap = new Map<string, string>([
+    ["BAIXA", "../../assets/img/lowest.svg"],
+    ["MEDIA", "../../assets/img/medium.svg"],
+    ["ALTA", "../../assets/img/highest.svg"]
+  ]);
 
   constructor(private service: TarefaService) { }
 
@@ -45,6 +52,10 @@ export class CardTarefaComponent implements OnInit {
 
   isConcluido(): boolean {
     return this.tarefa.status.toString() === 'CONCLUIDO'
+  }
+
+  obterPrioridade() {
+    return this.prioridadeMap.get(this.tarefa.prioridade.toString());
   }
 
 }

@@ -3,24 +3,13 @@
 
     <div class="col-start-1 col-end-3 text-2xl">{{ tarefa.titulo }}</div>
 
-    <div class="flex justify-end col-end-5 text-end"
-      *ngIf="tarefa.prioridade.toString() === 'BAIXA'">
-      <img class="w-10 h-10" src="../../assets/img/lowest.svg" alt="">
-    </div>
-
-    <div class="flex justify-end col-end-5 text-end"
-      *ngIf="tarefa.prioridade.toString() === 'MEDIA'">
-      <img class="w-10 h-10" src="../../assets/img/medium.svg" alt="">
-    </div>
-
-    <div class="flex justify-end col-end-5 text-end"
-      *ngIf="tarefa.prioridade.toString() === 'ALTA'">
-      <img class="w-10 h-10" src="../../assets/img/highest.svg" alt="">
+    <div class="flex justify-end col-end-5 text-end">
+      <img class="w-10 h-10" [src]="obterPrioridade()" alt="Not Found">
     </div>
 
     <div class="col-span-full overflow-y-auto h-40">{{ tarefa.descricao }}</div>
 
-    <button [ngClass]="{'bg-[#2cda57]': isConcluido(), 'bg-[#f54e49]': !isConcluido()}" class="flex justify-center items-center rounded-md p-1 col-start-3 col-end-5 text-end text-xl"
+    <button [ngClass]="isConcluido() ? 'bg-[#2cda57]' : 'bg-[#f54e49]'" class="flex justify-center items-center rounded-md p-1 col-start-3 col-end-5 text-end text-xl"
       (click)="onAcao()">
         {{tarefa.status}}
         <mat-icon *ngIf="!isConcluido()" class="px-0.5">info</mat-icon>
